@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вариант 4 - Гусев</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Images/clever.svg" type="image/x-icon">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-navigation">
+            <header class="sidebar-header">
+                <img src="Images/Logo.svg" alt="Логотип по варианту">
+                <h2 class="sidebar-header-text">Вариант 4</h2>
+            </header>
+            <input type="text" placeholder="Поиск" class="search-input">
+            <div class="sidebar-navigation-list">
+                <ul class="all-news active" data-category="all">
+                    <li>Все новости</li>
+                </ul>
+                <ul class="news-types">
+                    <li data-category="Спорт">Спорт</li>
+                    <li data-category="Общество">Общество</li>
+                    <li data-category="Экономика">Экономика</li>
+                </ul>
+            </div>
+        </div>
+        <footer class="sidebar-footer">
+            <p>&copy; Вариант 4.<br>Гусев Иван<br>группа ПИ-23-2</p>
+        </footer>
+    </aside>
+    <div class="main-page">
+        <header class="main-header">
+            <h1>Все контакты</h1>
+            <!-- Кастомный выпадающий список вместо select -->
+            <div class="custom-dropdown" id="customDropdown">
+                <div class="dropdown-selected" id="dropdownSelected">
+                    <span class="selected-text">По умолчанию</span>
+                    <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6L11 1" stroke="#667085" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <ul class="dropdown-options" id="dropdownOptions">
+                    <li class="dropdown-option" data-value="default" data-category="all">По умолчанию</li>
+                    <li class="dropdown-option" data-value="sport" data-category="Спорт">Спорт</li>
+                    <li class="dropdown-option" data-value="society" data-category="Общество">Общество</li>
+                    <li class="dropdown-option" data-value="economy" data-category="Экономика">Экономика</li>
+                    <li class="dropdown-option" data-value="random">Дикий огурец 1337</li>
+                </ul>
+            </div>
+        </header>
+        <div class="news-container">
+            <div class="news-item" data-category="Общество" data-animate="fadeIn">
+                <header>
+                    <p>Общество</p>
+                    <p>сегодня в 18:30</p>
+                </header>
+                <img class="news-image" src="Images/Khrennikov.png" alt="Памятник Тихону Хренникову">
+                <h3>Изготовленный Зурабом Церетели памятник Тихону Хренникову открыли в Ельце</h3>
+                <p class="news-item-description">Новая достопримечательность появилась в Ельце. Здесь открыли памятник
+                    композитору Тихону Хренникову. В этом году исполняется 110 лет со дня его рождения. Двухтонная
+                    скульптура полностью из бронзы. Её создал народный художник СССР и России, президент Российской
+                    академии художеств Зураб Церетели. Это первая его работа, установленная в Липецкой области.</p>
+            </div>
+            <div class="news-item" data-category="Спорт" data-animate="fadeIn">
+                <header>
+                    <p>Спорт</p>
+                    <p>сегодня в 18:30</p>
+                </header>
+                <img class="news-image" src="Images/Runner.png" alt="Участник забега">
+                <h3>Липецк признан беговой столицей России 2023 года</h3>
+                <p class="news-item-description">Липецк признан беговой столицей России 2023 года по итогам полумарафона
+                    «Забег.рф». В Липецке было 4000 участников забега, которые показали лучший результат в России,
+                    набрав 29,34 итоговых зачетных балла. Данный показатель высчитывался исходя из следующих
+                    показателей: средней дистанции, преодоленной всеми участниками субъекта, соотношению участников
+                    «Забега.рф» к его населению, а также по средней скорости бега. На втором месте оказался Магадан, он
+                    набрал 27,45 балла, на третьем — Санкт-Петербург, у него 21,55 балла</p>
+            </div>
+            <div class="news-item" data-category="Экономика" data-animate="fadeIn">
+                <header>
+                    <p>Экономика</p>
+                    <p>сегодня в 18:30</p>
+                </header>
+                <img class="news-image" src="Images/ElectricCar.png" alt="Электрокар Evolute">
+                <h3>Электрокар EVOLUTE из Липецкой области признан электромобильным брендом № 1 в России</h3>
+                <p class="news-item-description">Электрокар под маркой EVOLUTE вновь подтвердил звание «Электромобиля
+                    № 1» в России по результатам мая 2023 года. На регистрационный учёт в минувшем месяце встало
+                    167 таких электрокаров, что превысило 21% всех регистраций в сегменте электрического транспорта.</p>
+            </div>
+            <div class="news-item" data-category="Общество" data-animate="fadeIn">
+                <header>
+                    <p>Общество</p>
+                    <p>сегодня в 18:30</p>
+                </header>
+                <img class="news-image" src="Images/Artamonov.png" alt="Артамонов в ПВР">
+                <h3>Игорь Артамонов посетил белгородцев в липецком пункте временного размещения</h3>
+                <p class="news-item-description">Губернатор Липецкой области Игорь Артамонов, как и обещал ранее,
+                    посетил пункт временного размещения, в котором сейчас находятся жители Шебекинского района
+                    Белгородской области. В основном это семьи с детьми. Им предоставлены номера гостиничного типа.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Элементы для анимации самолёта -->
+    <div class="airplane" id="airplane">✈️</div>
+    <!-- Элемент для белого шума -->
+    <div class="white-noise-overlay" id="whiteNoiseOverlay"></div>
+    <canvas id="noiseCanvas" class="noise-canvas"></canvas>
+    <script src="Functions/dropdown.js"></script>
+    <script src="Functions/newsFilter.js"></script>
+    <script src="Functions/search.js"></script>
+    <script src="Functions/animations.js"></script>
+    <script src="Functions/effects.js"></script>
+    <script src="init.js"></script>
+</body>
+
+</html>
