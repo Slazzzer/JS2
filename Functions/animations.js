@@ -44,16 +44,92 @@ function animateCards() {
 /**
  * Настройка анимаций при наведении на карточки новостей
  * 
- * Устанавливает плавные переходы для карточек при наведении курсора,
- * обеспечивая визуальный отклик при взаимодействии.
+ * Реализует вращение карточек по часовой стрелке при наведении мыши.
+ * При уходе курсора карточка останавливается и возвращается в исходное состояние.
+ * Сохраняет эффект поднятия карточки при наведении.
  */
 function setupCardAnimations() {
     const cards = document.querySelectorAll('.news-item');
     
     cards.forEach(card => {
+        let rotationInterval = null;
+        let currentRotation = 0;
+        let baseTransform = ''; // Базовое состояние transform (для visible карточек)
+        
+        // Получаем базовое состояние transform из класса visible
+        if (card.classList.contains('visible')) {
+            baseTransform = 'translateY(0) scale(1)';
+        }
+        
+        // При наведении на карточку начинаем вращение
         card.addEventListener('mouseenter', function() {
-            // Устанавливаем плавный переход для всех свойств
-            this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            // Устанавливаем плавный переход для transform
+            this.style.transition = 'transform 0.1s linear';
+            
+            // Получаем текущий угол поворота, если он есть
+            const style = window.getComputedStyle(this);
+            const matrix = style.transform || style.webkitTransform || style.mozTransform;
+            
+            if (matrix !== 'none' && matrix !== '') {
+                // Пытаемся извлечь угол из transform
+                const matrixMatch = matrix.match(/matrix.*\((.+)\)/);
+                if (matrixMatch) {
+                    const values = matrixMatch[1].split(', ');
+                    if (values.length >= 4) {
+                        const a = parseFloat(values[0]);
+                        const b = parseFloat(values[1]);
+                        currentRotation = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+                        if (currentRotation < 0) currentRotation += 360;
+                    }
+                }
+            }
+            
+            // Запускаем непрерывное вращение по часовой стрелке
+            // Комбинируем вращение с поднятием карточки
+            rotationInterval = setInterval(() => {
+                currentRotation += 2; // Увеличиваем угол на 2 градуса за кадр
+                if (currentRotation >= 360) currentRotation = 0;
+                // Сохраняем эффект поднятия при вращении
+                this.style.transform = `translateY(-5px) rotate(${currentRotation}deg)`;
+            }, 16); // ~60 FPS
+        });
+        
+        // При уходе курсора останавливаем вращение и возвращаем в исходное состояние
+        card.addEventListener('mouseleave', function() {
+            // Останавливаем интервал вращения
+            if (rotationInterval) {
+                clearInterval(rotationInterval);
+                rotationInterval = null;
+            }
+            
+            // Плавно возвращаем карточку в исходное положение
+            // Вычисляем кратчайший путь к 0 градусам
+            let targetRotation = currentRotation;
+            if (currentRotation > 180) {
+                targetRotation = 360;
+            } else {
+                targetRotation = 0;
+            }
+            
+            // Плавная анимация возврата с сохранением базового состояния
+            this.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            // Возвращаем к базовому состоянию (без поднятия и вращения)
+            if (baseTransform) {
+                this.style.transform = baseTransform;
+            } else {
+                this.style.transform = '';
+            }
+            
+            // Сбрасываем угол после завершения анимации
+            setTimeout(() => {
+                currentRotation = 0;
+                if (baseTransform) {
+                    this.style.transform = baseTransform;
+                } else {
+                    this.style.transform = '';
+                }
+            }, 500);
         });
     });
 }
