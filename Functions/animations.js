@@ -68,7 +68,7 @@ function setupCardAnimations() {
             
             // Получаем текущий угол поворота, если он есть
             const style = window.getComputedStyle(this);
-            const matrix = style.transform || style.webkitTransform || style.mozTransform;
+            const matrix = style.transform || style.mozTransform;
             
             if (matrix !== 'none' && matrix !== '') {
                 // Пытаемся извлечь угол из transform
@@ -91,7 +91,7 @@ function setupCardAnimations() {
                 if (currentRotation >= 360) currentRotation = 0;
                 // Сохраняем эффект поднятия при вращении
                 this.style.transform = `translateY(-5px) rotate(${currentRotation}deg)`;
-            }, 16); // ~60 FPS
+            }, 16);
         });
         
         // При уходе курсора останавливаем вращение и возвращаем в исходное состояние
