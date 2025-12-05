@@ -10,13 +10,17 @@
 </head>
 
 <body>
+    <!-- Сайдбар - боковая панель навигации -->
     <aside class="sidebar">
         <div class="sidebar-navigation">
+            <!-- Заголовок сайдбара с логотипом -->
             <header class="sidebar-header">
                 <img src="Images/Logo.svg" alt="Логотип по варианту">
                 <h2 class="sidebar-header-text">Вариант 4</h2>
             </header>
+            <!-- Поле поиска по категориям -->
             <input type="text" placeholder="Поиск" class="search-input">
+            <!-- Список категорий для фильтрации -->
             <div class="sidebar-navigation-list">
                 <ul class="all-news active" data-category="all">
                     <li>Все новости</li>
@@ -28,20 +32,23 @@
                 </ul>
             </div>
         </div>
+        <!-- Футер сайдбара с информацией об авторе -->
         <footer class="sidebar-footer">
             <p>&copy; Вариант 4.<br>Гусев Иван<br>группа ПИ-23-2</p>
         </footer>
     </aside>
+    <!-- Основная страница с контентом -->
     <div class="main-page">
+        <!-- Заголовок основной страницы -->
         <header class="main-header">
             <h1>Все контакты</h1>
-            <!-- Кастомный выпадающий список вместо select -->
+            <!-- Выпадающий список фильтрации -->
             <div class="custom-dropdown" id="customDropdown">
                 <div class="dropdown-selected" id="dropdownSelected">
                     <span class="selected-text">По умолчанию</span>
                     <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L6 6L11 1" stroke="#667085" stroke-width="2" stroke-linecap="round"
+                        <path d="M1 1L6 6L11 1" stroke="var(--color-text-secondary)" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
                 </div>
@@ -50,11 +57,12 @@
                     <li class="dropdown-option" data-value="sport" data-category="Спорт">Спорт</li>
                     <li class="dropdown-option" data-value="society" data-category="Общество">Общество</li>
                     <li class="dropdown-option" data-value="economy" data-category="Экономика">Экономика</li>
-                    <li class="dropdown-option" data-value="random">Дикий огурец 1337</li>
                 </ul>
             </div>
         </header>
+        <!-- Контейнер карточек новостей -->
         <div class="news-container">
+            <!-- Карточка новости - Общество -->
             <div class="news-item" data-category="Общество" data-animate="fadeIn">
                 <header>
                     <p>Общество</p>
@@ -67,6 +75,7 @@
                     скульптура полностью из бронзы. Её создал народный художник СССР и России, президент Российской
                     академии художеств Зураб Церетели. Это первая его работа, установленная в Липецкой области.</p>
             </div>
+            <!-- Карточка новости - Спорт -->
             <div class="news-item" data-category="Спорт" data-animate="fadeIn">
                 <header>
                     <p>Спорт</p>
@@ -81,6 +90,7 @@
                     «Забега.рф» к его населению, а также по средней скорости бега. На втором месте оказался Магадан, он
                     набрал 27,45 балла, на третьем — Санкт-Петербург, у него 21,55 балла</p>
             </div>
+            <!-- Карточка новости - Экономика -->
             <div class="news-item" data-category="Экономика" data-animate="fadeIn">
                 <header>
                     <p>Экономика</p>
@@ -92,6 +102,7 @@
                     № 1» в России по результатам мая 2023 года. На регистрационный учёт в минувшем месяце встало
                     167 таких электрокаров, что превысило 21% всех регистраций в сегменте электрического транспорта.</p>
             </div>
+            <!-- Карточка новости - Общество -->
             <div class="news-item" data-category="Общество" data-animate="fadeIn">
                 <header>
                     <p>Общество</p>
@@ -105,16 +116,12 @@
             </div>
         </div>
     </div>
-    <!-- Элементы для анимации самолёта -->
+    <!-- Самолет для анимации при клике на футер -->
     <div class="airplane" id="airplane">✈️</div>
-    <!-- Элемент для белого шума -->
-    <div class="white-noise-overlay" id="whiteNoiseOverlay"></div>
-    <canvas id="noiseCanvas" class="noise-canvas"></canvas>
     <script src="Functions/dropdown.js"></script>
     <script src="Functions/newsFilter.js"></script>
     <script src="Functions/search.js"></script>
     <script src="Functions/animations.js"></script>
-    <script src="Functions/effects.js"></script>
     <script src="init.js"></script>
 </body>
 

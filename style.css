@@ -1,7 +1,9 @@
+/* CSS переменные для цветов и курсора */
 :root {
     --color-primary: #4a90e2;
     --color-primary-hover: rgba(74, 144, 226, 0.1);
     --color-primary-shadow: rgba(74, 144, 226, 0.15);
+    --color-primary-shadow-light: rgba(74, 144, 226, 0.2);
     --color-text-primary: #354153;
     --color-text-secondary: #667085;
     --color-bg-primary: #ffffff;
@@ -10,8 +12,19 @@
     --color-bg-selected: #E8F4FD;
     --color-border: #ccc;
     --color-border-light: #CECECE;
+    --color-shadow-dark: rgba(0, 0, 0, 0.15);
+    --color-shadow-medium: rgba(0, 0, 0, 0.12);
+    --color-rainbow-red: #ff0000;
+    --color-rainbow-orange: #ff7f00;
+    --color-rainbow-yellow: #ffff00;
+    --color-rainbow-green: #00ff00;
+    --color-rainbow-blue: #0000ff;
+    --color-rainbow-indigo: #4b0082;
+    --color-rainbow-violet: #9400d3;
+    --custom-cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%2338BDF8' d='M16 2 L18 6 L20 2 L18 6 L20 10 L16 8 L12 10 L14 6 L12 2 L14 6 Z'/%3E%3Cpath fill='%2356CBF2' d='M16 8 L20 10 L20 22 L16 20 L12 22 L12 10 Z'/%3E%3Cpath fill='%231E9AE5' d='M16 8 L12 10 L12 22 L16 20 Z'/%3E%3Cpath fill='%23C4A484' d='M16 20 L18 24 L20 20 L18 24 L20 28 L16 26 L12 28 L14 24 L12 20 L14 24 Z'/%3E%3Cpath fill='%23A0826D' d='M16 26 L20 28 L20 30 L16 28 L12 30 L12 28 Z'/%3E%3C/svg%3E") 8 4, auto;
 }
 
+/* Сброс стилей для всех элементов */
 * {
     font-family: "Inter";
     margin: 0;
@@ -19,6 +32,7 @@
     box-sizing: border-box;
 }
 
+/* Подключение шрифта Inter */
 @font-face {
     font-family: "Inter";
     src: url(Fonts/Inter-VariableFont_opsz\,wght.ttf);
@@ -26,33 +40,36 @@
     font-style: normal;
 }
 
+/* Основной контейнер HTML */
 html {
     width: 100%;
     height: 100%;
     margin: 0;
 }
 
+/* Тело страницы - основной контейнер */
 body {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     margin: 0;
-    overflow-x: hidden;
     background-color: var(--color-bg-primary);
+    cursor: var(--custom-cursor);
 }
 
-/* Sidebar */
+/* Сайдбар - боковая панель навигации */
 .sidebar {
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--color-border);
-    justify-content: space-between;
+    justify-content: space-beetween;
     padding: 16px;
     min-width: 250px;
     background-color: var(--color-bg-primary);
 }
 
+/* Заголовок сайдбара с логотипом и текстом */
 .sidebar-header {
     display: flex;
     flex-direction: row;
@@ -60,6 +77,7 @@ body {
     margin-bottom: 24px;
 }
 
+/* Логотип в сайдбаре */
 .sidebar-header img {
     width: 40px;
     height: 40px;
@@ -67,10 +85,17 @@ body {
     transition: transform 0.3s ease;
 }
 
+/* Анимация вращения логотипа */
 .sidebar-header img.rotating {
     animation: rotateLogo 0.06s linear infinite;
 }
 
+/* Анимация движения логотипа по экрану */
+.sidebar-header img.moving-around {
+    animation: rotateLogo 0.06s linear infinite;
+}
+
+/* Кейфреймы вращения логотипа */
 @keyframes rotateLogo {
     from {
         transform: rotate(0deg);
@@ -80,17 +105,19 @@ body {
     }
 }
 
+/* Текст "Вариант 4" с эффектом убегания */
 .sidebar-header-text {
     padding-left: 16px;
     color: var(--color-text-primary);
     font-size: 18px;
     font-weight: 600;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
+    user-select: none;
     position: relative;
-    display: inline-block;
 }
 
+/* Поле поиска */
 .search-input {
     height: 36px;
     width: 100%;
@@ -102,16 +129,19 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Состояние фокуса поля поиска */
 .search-input:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px var(--color-primary-hover);
 }
 
+/* Контейнер списка навигации */
 .sidebar-navigation-list {
     width: 100%;
 }
 
+/* Кнопка "Все новости" */
 .all-news {
     list-style-type: none;
     padding: 12px 16px;
@@ -122,27 +152,34 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Состояние наведения на "Все новости" */
 .all-news:hover {
     background-color: var(--color-bg-hover);
     transform: translateX(4px);
 }
 
+/* Активное состояние "Все новости" */
 .all-news.active {
     background-color: var(--color-bg-secondary);
     transform: translateX(0);
 }
 
+/* Текст внутри "Все новости" */
 .all-news li {
     color: var(--color-text-primary);
+    user-select: none;
     font-weight: 500;
 }
 
+/* Контейнер категорий новостей */
 .news-types {
     display: flex;
     flex-direction: column;
+    user-select: none;
     list-style-type: none;
 }
 
+/* Элемент категории новостей */
 .news-types li {
     margin-bottom: 8px;
     color: var(--color-text-primary);
@@ -152,12 +189,14 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Состояние наведения на категорию */
 .news-types li:hover {
     background-color: var(--color-bg-secondary);
     transform: translateX(4px);
     color: var(--color-primary);
 }
 
+/* Активное состояние категории */
 .news-types li.active {
     background-color: var(--color-bg-secondary);
     color: var(--color-text-primary);
@@ -165,17 +204,75 @@ body {
     transform: translateX(0);
 }
 
+/* Футер сайдбара с информацией об авторе */
 .sidebar-footer {
     margin-top: auto;
+    padding: 12px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-hover) 100%);
+    border: 2px dashed var(--color-primary);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Иконка самолета в футере */
+.sidebar-footer::before {
+    content: '✈️';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    opacity: 0.6;
+    animation: float 2s ease-in-out infinite;
+}
+
+/* Анимация плавания иконки самолета */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(-50%) translateY(0);
+    }
+    50% {
+        transform: translateY(-50%) translateY(-5px);
+    }
+}
+
+/* Состояние наведения на футер */
+.sidebar-footer:hover:not(.blocked) {
+    background: linear-gradient(135deg, var(--color-primary-hover) 0%, var(--color-bg-secondary) 100%);
+    border-color: var(--color-primary);
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px var(--color-primary-shadow-light);
+}
+
+/* Заблокированное состояние футера */
+.sidebar-footer.blocked {
+    cursor: not-allowed !important;
+    opacity: 0.6;
+    pointer-events: auto;
+}
+
+/* Состояние наведения на заблокированный футер */
+.sidebar-footer.blocked:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Текст в футере */
 .sidebar-footer p {
-    color: var(--color-text-secondary);
+    color: var(--color-text-primary);
     font-size: 12px;
     line-height: 1.6;
+    font-weight: 500;
+    margin: 0;
+    position: relative;
+    z-index: 1;
 }
 
-/* Main Page */
+/* Основная страница с контентом */
 .main-page {
     width: 100%;
     display: flex;
@@ -183,6 +280,7 @@ body {
     background-color: var(--color-bg-primary);
 }
 
+/* Заголовок основной страницы */
 .main-header {
     display: flex;
     flex-direction: row;
@@ -192,6 +290,7 @@ body {
     border-bottom: 1px solid var(--color-border);
 }
 
+/* Заголовок "Все контакты" с радужной анимацией */
 .main-header h1 {
     font-size: 24px;
     font-weight: 600;
@@ -199,22 +298,22 @@ body {
     cursor: pointer;
     user-select: none;
     background: linear-gradient(90deg, 
-        #ff0000 0%, 
-        #ff7f00 14.28%, 
-        #ffff00 28.56%, 
-        #00ff00 42.84%, 
-        #0000ff 57.12%, 
-        #4b0082 71.4%, 
-        #9400d3 85.68%, 
-        #ff0000 100%);
+        var(--color-rainbow-red) 0%, 
+        var(--color-rainbow-orange) 14.28%, 
+        var(--color-rainbow-yellow) 28.56%, 
+        var(--color-rainbow-green) 42.84%, 
+        var(--color-rainbow-blue) 57.12%, 
+        var(--color-rainbow-indigo) 71.4%, 
+        var(--color-rainbow-violet) 85.68%, 
+        var(--color-rainbow-red) 100%);
     background-size: 200% 100%;
-    -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: transparent;
     animation: rainbow 2s linear infinite;
     transform-origin: center;
 }
 
+/* Анимация радужного переливания */
 @keyframes rainbow {
     0% {
         background-position: 0% 50%;
@@ -224,13 +323,14 @@ body {
     }
 }
 
-/* Кастомный выпадающий список */
+/* Выпадающий список фильтрации */
 .custom-dropdown {
     position: relative;
     width: 180px;
     z-index: 1000;
 }
 
+/* Выбранный элемент dropdown */
 .dropdown-selected {
     display: flex;
     align-items: center;
@@ -244,22 +344,27 @@ body {
     height: 36px;
 }
 
+/* Состояние наведения на выбранный элемент */
 .dropdown-selected:hover {
     border-color: var(--color-primary);
     box-shadow: 0 2px 4px var(--color-primary-hover);
 }
 
+/* Активное состояние выбранного элемента */
 .dropdown-selected.active {
     border-color: var(--color-primary);
     box-shadow: 0 2px 8px var(--color-primary-shadow);
 }
 
+/* Текст выбранной опции */
 .selected-text {
     font-size: 14px;
     color: var(--color-text-primary);
+    user-select: none;
     font-weight: 400;
 }
 
+/* Стрелка dropdown */
 .dropdown-arrow {
     color: var(--color-text-secondary);
     transition: transform 0.3s ease;
@@ -267,10 +372,12 @@ body {
     margin-left: 8px;
 }
 
+/* Поворот стрелки при открытии */
 .dropdown-selected.active .dropdown-arrow {
     transform: rotate(180deg);
 }
 
+/* Список опций выпадающего меню */
 .dropdown-options {
     position: absolute;
     top: calc(100% + 4px);
@@ -280,9 +387,10 @@ body {
     border: 1px solid var(--color-border-light);
     border-radius: 5px;
     list-style: none;
+    user-select: none;
     margin: 0;
     padding: 4px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px var(--color-shadow-dark);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
@@ -298,64 +406,76 @@ body {
     max-height: 300px;
 }
 
+/* Опция в выпадающем списке */
 .dropdown-option {
     padding: 10px 12px;
     cursor: pointer;
     font-size: 14px;
     color: var(--color-text-primary);
+    user-select: none;
     transition: all 0.2s ease;
     position: relative;
 }
 
+/* Состояние наведения на опцию */
 .dropdown-option:hover {
     background-color: var(--color-bg-secondary);
     color: var(--color-primary);
 }
 
+/* Выбранная опция */
 .dropdown-option.selected {
     background-color: var(--color-bg-selected);
     color: var(--color-primary);
     font-weight: 500;
 }
 
-/* News Container */
+/* Контейнер карточек новостей */
 .news-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     padding: 30px;
     gap: 20px;
 }
 
+/* Карточка новости */
 .news-item {
     border: 1px solid var(--color-border);
     border-radius: 10px;
     width: 370px;
     height: auto;
     background-color: var(--color-bg-primary);
-    overflow: hidden;
+    overflow: visible;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     transform: translateY(20px) scale(0.95);
     cursor: pointer;
     transform-origin: center center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    user-select: none;
 }
 
+/* Видимое состояние карточки */
 .news-item.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
+/* Состояние наведения на карточку новости */
 .news-item:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 24px var(--color-shadow-medium);
     border-color: var(--color-primary);
 }
 
+/* Скрытое состояние карточки */
 .news-item.hidden {
     display: none;
 }
 
+/* Состояние фильтрации карточки */
 .news-item.filtering {
     opacity: 0;
     transform: scale(0.9) translateY(10px);
@@ -363,6 +483,7 @@ body {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Заголовок карточки новости */
 .news-item header {
     display: flex;
     flex-direction: row;
@@ -371,17 +492,20 @@ body {
     padding: 16px 24px 12px 24px;
 }
 
+/* Категория новости в заголовке */
 .news-item header p:first-child {
     color: var(--color-text-primary);
     font-weight: 500;
     font-size: 14px;
 }
 
+/* Дата новости в заголовке */
 .news-item header p:last-child {
     color: var(--color-text-secondary);
     font-size: 12px;
 }
 
+/* Изображение в карточке новости */
 .news-item img {
     width: 100%;
     height: 200px;
@@ -390,10 +514,12 @@ body {
     transition: transform 0.3s ease;
 }
 
+/* Увеличение изображения при наведении */
 .news-item:hover img {
     transform: scale(1.05);
 }
 
+/* Заголовок новости */
 .news-item h3 {
     margin: 16px 24px;
     color: var(--color-text-primary);
@@ -403,10 +529,12 @@ body {
     transition: color 0.3s ease;
 }
 
+/* Изменение цвета заголовка при наведении */
 .news-item:hover h3 {
     color: var(--color-primary);
 }
 
+/* Описание новости */
 .news-item-description {
     margin: 0 24px 24px 24px;
     color: var(--color-text-secondary);
@@ -414,7 +542,7 @@ body {
     line-height: 1.6;
 }
 
-/* Анимации */
+/* Анимация появления элементов снизу */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -427,6 +555,7 @@ body {
     }
 }
 
+/* Анимация появления элементов сверху */
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -439,7 +568,7 @@ body {
     }
 }
 
-/* Анимация самолёта */
+/* Самолет для анимации при клике на футер */
 .airplane {
     position: fixed;
     bottom: 50px;
@@ -451,85 +580,13 @@ body {
     transition: opacity 0.3s ease;
 }
 
+/* Активное состояние самолета - полет */
 .airplane.flying {
     opacity: 1;
     animation: flyAcross 3s ease-in-out forwards;
 }
 
-/* Эффект белого шума */
-.white-noise-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.1) 0px,
-        rgba(0, 0, 0, 0.1) 1px,
-        rgba(255, 255, 255, 0.1) 2px
-    );
-    pointer-events: none;
-    z-index: 99999;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    mix-blend-mode: overlay;
-}
-
-.white-noise-overlay.active {
-    opacity: 1;
-    animation: noise 0.1s infinite;
-}
-
-.noise-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 99998;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.noise-canvas.active {
-    opacity: 1;
-}
-
-@keyframes noise {
-    0%, 100% {
-        transform: translate(0, 0);
-    }
-    10% {
-        transform: translate(-5%, -5%);
-    }
-    20% {
-        transform: translate(-10%, 5%);
-    }
-    30% {
-        transform: translate(5%, -10%);
-    }
-    40% {
-        transform: translate(-5%, 15%);
-    }
-    50% {
-        transform: translate(-10%, 5%);
-    }
-    60% {
-        transform: translate(15%, 0%);
-    }
-    70% {
-        transform: translate(0%, 15%);
-    }
-    80% {
-        transform: translate(-15%, 10%);
-    }
-    90% {
-        transform: translate(10%, 5%);
-    }
-}
-
+/* Анимация полета самолета */
 @keyframes flyAcross {
     0% {
         left: -150px;
@@ -544,7 +601,7 @@ body {
     }
 }
 
-/* Адаптивность */
+/* Адаптивные стили для разных размеров экрана */
 @media (max-width: 1024px) {
     .news-container {
         justify-content: center;
