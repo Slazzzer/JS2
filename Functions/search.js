@@ -37,12 +37,26 @@ function filterBySearch(query) {
         const container = document.querySelector('.news-container');
         const filteredItems = Array.from(newsItems).filter(item => {
             const itemCategory = item.getAttribute('data-category');
-            return itemCategory && itemCategory.toLowerCase().includes(query);
+            const titleElement = item.querySelector('h3');
+            const titleText = titleElement ? titleElement.textContent.toLowerCase() : '';
+            
+            // Проверяем совпадение в категории или в заголовке
+            const matchesCategory = itemCategory && itemCategory.toLowerCase().includes(query);
+            const matchesTitle = titleText.includes(query);
+            
+            return matchesCategory || matchesTitle;
         });
 
         newsItems.forEach(item => {
             const itemCategory = item.getAttribute('data-category');
-            if (!itemCategory || !itemCategory.toLowerCase().includes(query)) {
+            const titleElement = item.querySelector('h3');
+            const titleText = titleElement ? titleElement.textContent.toLowerCase() : '';
+            
+            // Проверяем совпадение в категории или в заголовке
+            const matchesCategory = itemCategory && itemCategory.toLowerCase().includes(query);
+            const matchesTitle = titleText.includes(query);
+            
+            if (!matchesCategory && !matchesTitle) {
                 item.classList.add('hidden');
                 item.classList.remove('visible');
             }
